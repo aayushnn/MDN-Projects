@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>JSON: Task 1</title>
+    <style>
+      p {
+        color: purple;
+        margin: 0.5em 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+    <!-- <link rel="stylesheet" href="../styles.css" /> -->
+  </head>
+
+  <body>
+
+    <section class="preview">
+
+
+
+    </section>
+
+  </body>
+  <script>
+    const section = document.querySelector('section');
+
+    let para1 = document.createElement('p');
+    let para2 = document.createElement('p');
+    let motherInfo = 'The mother cats are called ';
+    let kittenInfo;
+    const requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/tasks/json/sample.json';
+
+    fetch(requestURL)
+    .then(response => response.text())
+    .then(text => displayCatInfo(text))
+
+    function displayCatInfo(catString) {
+      let total = 0;
+      let male = 0;
+
+      // Add your code here
+
+      cats = JSON.parse(catString);
+      motherInfo = motherInfo.concat(populateMother(cats));
+      kittenInfo = populateKittens(cats);
+
+      // Don't edit the code below here!
+
+      para1.textContent = motherInfo;
+      para2.textContent = kittenInfo;
+    }
+
+    /*
+    * Gets name of all mother cats and joins them by comma
+    * returns a string
+    */
+    function populateMother(cats) {
+      const catNames = [];
+
+      for (const cat of cats) {
+        catNames.push(cat.name);
+      }
+
+      const nameString = catNames.join();
+
+      return nameString;
+    }
+
+    /*
+    * Find number of kittens in how many are male and female
+    * returns a string
+    */
+    function populateKittens(cats) {
+      kittenCount = 0;
+      males = 0;
+      females = 0;
+
+      for(const cat of cats) {
+        for(const kitten of cat.kittens) {
+          kittenCount++;
+          kitten.gender == "m" ? males++ : females++; //if statement
+        }
+      }
+
+      const kittenInfo = `There are ${kittenCount} kittens. ${males} are males and ${females} are females.`;
+
+      return kittenInfo;
+    }
+
+    section.appendChild(para1);
+    section.appendChild(para2);
+  </script>
+
+</html>
