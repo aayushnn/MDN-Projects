@@ -1,2 +1,2 @@
 # MDN-Projects
-Solutions to projects for MDN "Front-end web developer" course.
+Solutions to projects for MDN's "Front-end web developer" course.
