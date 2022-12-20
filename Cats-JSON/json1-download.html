@@ -56,13 +56,31 @@
 
     /*
     * Gets name of all mother cats and joins them by comma
+    * - if last name, then add name with "and" and "."
+    * - if first name, then add just name
+    * - else add name with space
+    * 
+    * 
     * returns a string
     */
     function populateMother(cats) {
       const catNames = [];
 
-      for (const cat of cats) {
-        catNames.push(cat.name);
+      // for (const cat of cats) {
+      //   catNames.push(cat.name);
+      // }
+
+      for (let i=0; i<cats.length; i++) {
+        if (i == cats.length-1) {
+          catNames.push(` and ${cats[i].name}.`);
+
+        } else {
+          if (i == 0) {
+            catNames.push(cats[i].name);
+          } else {
+            catNames.push(` ${cats[i].name}`);
+          }      
+        }
       }
 
       const nameString = catNames.join();
